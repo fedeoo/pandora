@@ -1,0 +1,22 @@
+$toolbarHeight: 56px;
+$componentPanelWidth: 240px;
+
+@mixin auto-height {
+  position: absolute;
+  top: $toolbarHeight;
+  bottom: 0;
+}
+
+.mt-component-panel {
+  @include auto-height;
+  left: 0;
+  width: $componentPanelWidth;
+}
+.mt-stage {
+  margin: 0 $componentPanelWidth;
+}
+.mt-property-panel {
+  @include auto-height;
+  right: 0;
+  width: $componentPanelWidth;
+}
