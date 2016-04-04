@@ -1,7 +1,10 @@
 import React from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle, FontIcon, RaisedButton} from 'material-ui';
 
-import ComponentPanel from './ComponentPanel.jsx';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+import {ComponentPanel} from './component-panel';
 import Stage from './Stage.jsx'
 import PropertyPanel from './PropertyPanel.jsx';
 import './skeleton.scss';
@@ -26,4 +29,4 @@ class AppComponent extends React.Component {
   }
 }
 
-export default AppComponent;
+export default DragDropContext(HTML5Backend)(AppComponent);

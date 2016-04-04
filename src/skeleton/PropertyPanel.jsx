@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {AppBar} from 'material-ui'
 
-class PropertyPanel extends React.Component {
+class PropertyPanel extends Component {
   render () {
     return (
-      <div className="mt-property-panel">
+      <div className="ds-property-panel">
         <AppBar title="Properties"/>
       </div>
     );
