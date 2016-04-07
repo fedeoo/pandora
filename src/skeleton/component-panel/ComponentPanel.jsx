@@ -1,31 +1,26 @@
 import React, {Component} from 'react';
-import {AppBar} from 'material-ui';
+import {Card} from 'material-ui';
 import Panel from '../panel';
+import {connect} from 'react-redux';
 
 import ComponentList from './ComponentList.jsx';
 
-class ComponentPanel extends Component {
-  // constructor () {
-  //   super();
-  //   this.setState({
-  //     list: [{
-  //       cid: 'heading',
-  //       label: 'Heading'
-  //     }]
-  //   });
-  // }
+import './component-panel.scss';
 
-  render () {
-    let list = [{
-      cid: 'heading',
-      label: 'Heading'
-    }];
-    return (
-      <Panel heading="Compoents" className="ds-component-panel">
-        <ComponentList data={list}/>
-      </Panel>
-    );
-  }
+function mapState (state) {
+  let defaultList = [{
+    cid: 'Heading',
+    label: 'Heading'
+  }];
+  let {mountedComponents = defaultList} = state;
+  return {mountedComponents};
 }
 
-export default ComponentPanel;
+const ComponentPanel = (store) => {
+  let {mountedComponents} = store;
+  return <Panel heading="Components" className="ds-component-panel">
+    <ComponentList data={mountedComponents}/>
+  </Panel>
+};
+
+export default connect(mapState)(ComponentPanel);

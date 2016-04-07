@@ -1,5 +1,5 @@
 $toolbarHeight: 56px;
-$componentPanelWidth: 240px;
+$componentPanelWidth: 320px;
 
 @mixin auto-height {
   position: absolute;
@@ -12,8 +12,18 @@ $componentPanelWidth: 240px;
   left: 0;
   width: $componentPanelWidth;
 }
-.ds-stage {
-  margin: 0 $componentPanelWidth;
+.ds-stage-container {
+  @include auto-height;
+  left: $componentPanelWidth + 1;
+  right: $componentPanelWidth + 1;
+  top: $toolbarHeight;
+  bottom: 0;
+
+  .ds-stage {
+    height: 100%;
+    overflow: hidden;
+    background: repeating-linear-gradient(to right, #eee, #eee 8.333%, #fff 8.333%, #fff 16.666%)
+  }
 }
 .ds-property-panel {
   @include auto-height;

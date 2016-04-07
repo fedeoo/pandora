@@ -5,7 +5,7 @@ import {ComponentTypes} from '../Constants.js';
 const componentSource = {
   beginDrag(props) {
     return {
-      type: props.cid
+      ctype: props.cid
     };
   }
 };

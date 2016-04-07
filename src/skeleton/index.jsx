@@ -4,13 +4,16 @@ import {Toolbar, ToolbarGroup, ToolbarTitle, FontIcon, RaisedButton} from 'mater
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
+import 'font-awesome/css/font-awesome.css';
+
 import {ComponentPanel} from './component-panel';
-import Stage from './Stage.jsx'
-import PropertyPanel from './PropertyPanel.jsx';
+import StageModule, {Stage} from './stage';
+import {PropertyPanel} from './property-panel';
 import './skeleton.scss';
 
+console.log(typeof Stage, 'StageModule', StageModule);
 class AppComponent extends React.Component {
-  render () {
+  render() {
     return (
       <div>
         <Toolbar>
@@ -21,9 +24,11 @@ class AppComponent extends React.Component {
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
         </Toolbar>
-        <ComponentPanel />
-        <Stage className="mt-stage"/>
-        <PropertyPanel/>
+        <ComponentPanel className="ds-component-panel"/>
+        <div className="ds-stage-container">
+          <Stage className="ds-stage"/>
+        </div>
+        <PropertyPanel className="ds-property-panel"/>
      </div>
     );
   }
