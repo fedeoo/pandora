@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {DropTarget} from 'react-dnd';
-import {connect} from 'react-redux';
 import {ComponentTypes} from '../Constants';
 
 import {addComponent} from '../../actions';
@@ -46,16 +45,4 @@ class Stage extends Component {
   }
 }
 
-
-// export container component
-function mapState ({components}) {
-  return {
-    activeComponents: components,
-    childComponents: components[0].childComponents
-  };
-}
-
-let DropabledStage = DropTarget(ComponentTypes.COMPONENT, stageTarget, collect)(Stage);
-export default connect(mapState)((props) => {
-  return (<DropabledStage {...props}/>);
-});
+export default DropTarget(ComponentTypes.COMPONENT, stageTarget, collect)(Stage);

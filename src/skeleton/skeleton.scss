@@ -24,6 +24,37 @@ $componentPanelWidth: 320px;
     overflow: hidden;
     background: repeating-linear-gradient(to right, #eee, #eee 8.333%, #fff 8.333%, #fff 16.666%)
   }
+  .highlight-selector {
+    $padding: 1px;
+    $borderWidth: 2px;
+    position: absolute;
+    padding: $padding;
+    cursor: move;
+    z-index: 1002;
+    background-color: rgba(73, 164, 230, .1);
+    border: $borderWidth solid #009FF2;
+    margin-left: 0 - ($padding + $borderWidth);
+    margin-right: 0 - ($padding + $borderWidth);
+  }
+  .highlight {
+    $padding: 1px;
+    $borderWidth: 1px;
+    position: absolute;
+    padding: $padding;
+    z-index: 1002;
+    border: $borderWidth solid #91C4DF;
+    margin-left: 0 - ($padding + $borderWidth);
+    margin-right: 0 - ($padding + $borderWidth);
+  }
+  .ds-component-container {
+    position: relative;
+    .ds-component-mask {
+      @include auto-height;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
 }
 .ds-property-panel {
   @include auto-height;

@@ -7,7 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import 'font-awesome/css/font-awesome.css';
 
 import {ComponentPanel} from './component-panel';
-import StageModule, {Stage} from './stage';
+import StageModule, {StageContainer} from './stage';
 import {PropertyPanel} from './property-panel';
 import './skeleton.scss';
 
@@ -25,9 +25,7 @@ class AppComponent extends React.Component {
           </ToolbarGroup>
         </Toolbar>
         <ComponentPanel className="ds-component-panel"/>
-        <div className="ds-stage-container">
-          <Stage className="ds-stage"/>
-        </div>
+        <StageContainer />
         <PropertyPanel className="ds-property-panel"/>
      </div>
     );

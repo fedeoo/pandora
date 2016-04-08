@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const components = (activeComponents = {}, action) => {
   switch (action.type) {
-    case '@@redux/INIT':
+    case '@@redux/INIT': // it's not recommend way.
       return {
         0: {
           ctype: 'Stage',
