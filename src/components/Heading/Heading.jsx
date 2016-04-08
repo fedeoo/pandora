@@ -6,6 +6,7 @@ const propTypes = {
 };
 
 const defaultProps= {
+  size: 1,
   title: 'Heading'
 };
 

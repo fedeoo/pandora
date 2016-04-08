@@ -5,7 +5,7 @@ import {ComponentTypes} from '../Constants.js';
 const componentSource = {
   beginDrag(props) {
     return {
-      ctype: props.cid
+      ctype: props.ctype
     };
   }
 };
@@ -18,11 +18,11 @@ function collect (connect, monitor) {
 
 class ComponentTemplate extends Component {
   render () {
-    let {cid, label, connectDragSource} = this.props;
-    let iconClass = `icon-${cid}`;
+    let {ctype, label, connectDragSource} = this.props;
+    let iconClass = `icon-${ctype}`;
     return connectDragSource(
-      <li key={cid} className="component-item" data-cid={cid}>
-        <div cid={cid} className={iconClass}></div>
+      <li key={ctype} className="component-item" data-ctype={ctype}>
+        <div ctype={ctype} className={iconClass}></div>
         <div className="label">{label}</div>
     </li>
     );

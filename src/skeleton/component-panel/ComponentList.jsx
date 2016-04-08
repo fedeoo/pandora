@@ -5,8 +5,8 @@ class ComponentList extends Component {
   render () {
     let {data} = this.props;
     let ComponentNodes = data.map((component)=> {
-      let {cid, label} = component;
-      return (<ComponentTemplate key={cid} cid={cid} label={label}/>);
+      let {ctype, label} = component;
+      return (<ComponentTemplate key={ctype} ctype={ctype} label={label}/>);
     });
     return (
       <ul>

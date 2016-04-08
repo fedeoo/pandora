@@ -9,7 +9,7 @@ import './component-panel.scss';
 
 function mapState (state) {
   let defaultList = [{
-    cid: 'Heading',
+    ctype: 'Heading',
     label: 'Heading'
   }];
   let {mountedComponents = defaultList} = state;

@@ -8,5 +8,30 @@ export const addComponent = (ctype, pid) => {
       cid: nextCId ++,
       ctype: ctype
     }
-  }
+  };
+}
+
+export const hoverComponent = (cid) => {
+  return {
+    type: 'COMPONENT_HOVER',
+    payload: {
+      cid
+    }
+  };
+}
+
+export const selectComponent = (cid) => {
+  return {
+    type: 'COMPONENT_SELECT',
+    payload: {
+      cid
+    }
+  };
+}
+
+export const changeComponent = (data) => {
+  return {
+    type: 'COMPONENT_CHANGE',
+    payload: data
+  };
 }

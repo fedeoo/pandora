@@ -3,7 +3,7 @@ import {DropTarget} from 'react-dnd';
 import {ComponentTypes} from '../Constants';
 
 import {addComponent} from '../../actions';
-import Conponents from '../../components'
+import Components from './Proxy.jsx';
 
 const stageTarget = {
   drop (props, monitor) {
@@ -26,6 +26,7 @@ class Stage extends Component {
     let {
       connectDropTarget,
       className,
+      dispatch,
       activeComponents = [],
       childComponents = []
     } = this.props;
@@ -34,11 +35,11 @@ class Stage extends Component {
       {
         childComponents.map((cid) => {
           let item = activeComponents[cid];
-          let ItemComponent = Conponents[item.ctype];
+          let ItemComponent = Components[item.ctype];
           if (!ItemComponent) {
               throw new Error(`can't find Component ctype: ${item.ctype}`);
           }
-          return <ItemComponent key={item.key} {...item.data} />;
+          return <ItemComponent key={item.cid} cid={item.cid} dispatch={dispatch} {...item.data} />;
         })
       }
     </div>);
