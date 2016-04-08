@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import components from './components';
+import cInstances from './cInstances';
 export default combineReducers({
-  components
+  cInstances
 });

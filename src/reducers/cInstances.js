@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import Components from '../components';
 
-const addComponent = (activeComponents, action) => {
+const addComponent = (cInstances, action) => {
   let { payload } = action;
-  let parentComponent = activeComponents[payload.pid];
+  let parentComponent = cInstances[payload.pid];
   if (!parentComponent) {
     throw new Error(`COMPONENT_ADD: can't find parentComponent width cid ${payload.pid}·`);
   }
@@ -14,39 +14,39 @@ const addComponent = (activeComponents, action) => {
     cid: payload.cid,
     data: {}
   };
-  return _.merge({}, activeComponents, {[payload.cid]: newComponent});
+  return _.merge({}, cInstances, {[payload.cid]: newComponent});
 };
 
-const hoverComponent = (activeComponents, action) => {
+const hoverComponent = (cInstances, action) => {
   let { payload } = action;
-  _.each(activeComponents, (item) => {
+  _.each(cInstances, (item) => {
     _.merge({}, item, {isHover: false});
   });
-  let currentComponent = activeComponents[payload.cid];
+  let currentComponent = cInstances[payload.cid];
   currentComponent = _.merge({}, currentComponent, {isHover: true});
-  return _.merge({}, activeComponents, {[payload.cid]: currentComponent});
+  return _.merge({}, cInstances, {[payload.cid]: currentComponent});
 };
 
-const selectComponent = (activeComponents, action) => {
+const selectComponent = (cInstances, action) => {
   let { payload } = action;
   let ret = {};
-  _.each(activeComponents, (item, key) => {
+  _.each(cInstances, (item, key) => {
     ret[key] = _.merge({}, item, {isSelected: false});
   });
-  let currentComponent = activeComponents[payload.cid];
+  let currentComponent = cInstances[payload.cid];
   currentComponent = _.merge({}, currentComponent, {isSelected: true});
   return _.merge(ret, {[payload.cid]: currentComponent});
 }
 
-const changeComponent = (activeComponents, action) => {
+const changeComponent = (cInstances, action) => {
   let { payload } = action;
-  let currentComponent = activeComponents[payload.cid];
+  let currentComponent = cInstances[payload.cid];
   currentComponent.data = _.merge({}, currentComponent.data, payload.data);
   currentComponent = _.merge({}, currentComponent);
-  return _.merge({}, activeComponents, {[payload.cid]: currentComponent});
+  return _.merge({}, cInstances, {[payload.cid]: currentComponent});
 }
 
-const component = (state = {}, action) => {
+const cInstances = (state = {}, action) => {
   switch (action.type) {
     case '@@redux/INIT': // it's not recommend way.
       return {
@@ -77,4 +77,4 @@ const component = (state = {}, action) => {
   }
 }
 
-export default component;
+export default cInstances;

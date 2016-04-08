@@ -7,8 +7,8 @@ import {changeComponent} from '../../actions';
 import Panel from '../panel';
 import Property from '../../components/property';
 
-function mapState ({components = []}) {
-  let selectedComponent = _.find(components, 'isSelected');
+function mapState ({cInstances = []}) {
+  let selectedComponent = _.find(cInstances, 'isSelected');
   return {
     selectedComponent
   };

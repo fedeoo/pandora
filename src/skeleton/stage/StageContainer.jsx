@@ -20,10 +20,10 @@ class StageContainer extends Component {
 }
 
 // export container component
-function mapState ({components}) {
+function mapState ({cInstances}) {
   return {
-    activeComponents: components,
-    childComponents: components[0].childComponents
+    activeComponents: cInstances,
+    childComponents: cInstances[0].childComponents
   };
 }
 
