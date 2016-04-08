@@ -1,8 +1,12 @@
-let nextCId = 0;
-export const addComponent = (ctype) => {
+const rootCid = 0;
+let nextCId = 1;
+export const addComponent = (ctype, pid) => {
   return {
     type: 'COMPONENT_ADD',
-    cid: nextCId ++,
-    ctype: ctype
+    payload: {
+      pid: pid || rootCid,
+      cid: nextCId ++,
+      ctype: ctype
+    }
   }
 }

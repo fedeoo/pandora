@@ -24,30 +24,38 @@ function collect (connect, monitor) {
 class Stage extends Component {
 
   render () {
-    let {connectDropTarget, className, activeComponents = []} = this.props;
-    console.log('activeComponents', activeComponents);
+    let {
+      connectDropTarget,
+      className,
+      activeComponents = [],
+      childComponents = []
+    } = this.props;
+
     return connectDropTarget(<div className={className}>
       {
-        activeComponents.map((item) => {
+        childComponents.map((cid) => {
+          let item = activeComponents[cid];
           let ItemComponent = Conponents[item.ctype];
           if (!ItemComponent) {
               throw new Error(`can't find Component ctype: ${item.ctype}`);
           }
-          return <ItemComponent key={item.key} />;
+          return <ItemComponent key={item.key} {...item.data} />;
         })
       }
     </div>);
   }
 }
-let DropabledStage = DropTarget(ComponentTypes.COMPONENT, stageTarget, collect)(Stage);
+
 
 // export container component
 function mapState ({components}) {
   return {
-    activeComponents: components
+    activeComponents: components,
+    childComponents: components[0].childComponents
   };
 }
 
+let DropabledStage = DropTarget(ComponentTypes.COMPONENT, stageTarget, collect)(Stage);
 export default connect(mapState)((props) => {
   return (<DropabledStage {...props}/>);
 });
