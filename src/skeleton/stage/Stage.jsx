@@ -27,19 +27,17 @@ class Stage extends Component {
       connectDropTarget,
       className,
       dispatch,
-      activeComponents = [],
-      childComponents = []
+      childComponents
     } = this.props;
 
     return connectDropTarget(<div className={className}>
       {
-        childComponents.map((cid) => {
-          let item = activeComponents[cid];
-          let ItemComponent = Components[item.ctype];
-          if (!ItemComponent) {
-              throw new Error(`can't find Component ctype: ${item.ctype}`);
-          }
-          return <ItemComponent key={item.cid} cid={item.cid} dispatch={dispatch} {...item.data} />;
+        childComponents.map((item) => {
+          let { ctype, cid, data } = item;
+          data = data.toJS();
+          let ItemComponent = Components[ctype];
+
+          return <ItemComponent key={cid} cid={cid} dispatch={dispatch} {...data} />;
         })
       }
     </div>);

@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import {patch} from 'extensible-polyfill';
+patch('immutable');
+
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 

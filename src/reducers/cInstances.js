@@ -1,62 +1,60 @@
 import _ from 'lodash';
+import Immutable from 'immutable';
 import Components from '../components';
 
 const addComponent = (cInstances, action) => {
   let { payload } = action;
-  let parentComponent = cInstances[payload.pid];
-  if (!parentComponent) {
-    throw new Error(`COMPONENT_ADD: can't find parentComponent width cid ${payload.pid}·`);
-  }
-  // let data = _.clone(Components[payload.ctype].defaultProps);
-  parentComponent.childComponents = [...parentComponent.childComponents, payload.cid];
-  let newComponent = {
+  cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
+    return childIds.push(payload.cid);
+  });
+  let newComponent = Immutable.fromJS({
     ctype: payload.ctype,
     cid: payload.cid,
-    data: {}
-  };
-  return _.merge({}, cInstances, {[payload.cid]: newComponent});
+    data: {},
+    childIds: []
+  });
+  return cInstances.setIn([payload.cid], newComponent);
 };
 
 const hoverComponent = (cInstances, action) => {
   let { payload } = action;
-  _.each(cInstances, (item) => {
-    _.merge({}, item, {isHover: false});
+  let lastComponent = cInstances.find((item) => {
+    return item.get('isHover');
   });
-  let currentComponent = cInstances[payload.cid];
-  currentComponent = _.merge({}, currentComponent, {isHover: true});
-  return _.merge({}, cInstances, {[payload.cid]: currentComponent});
+  if (lastComponent && lastComponent.get('cid') !== payload.cid) {
+    cInstances = cInstances.setIn([lastComponent.get('cid'), 'isHover'], false);
+  }
+  return cInstances.setIn([payload.cid, 'isHover'], true);
 };
 
 const selectComponent = (cInstances, action) => {
   let { payload } = action;
-  let ret = {};
-  _.each(cInstances, (item, key) => {
-    ret[key] = _.merge({}, item, {isSelected: false});
+  let lastComponent = cInstances.find((item) => {
+    return item.get('isSelected');
   });
-  let currentComponent = cInstances[payload.cid];
-  currentComponent = _.merge({}, currentComponent, {isSelected: true});
-  return _.merge(ret, {[payload.cid]: currentComponent});
+  if (lastComponent && lastComponent.get('cid') !== payload.cid) {
+    cInstances = cInstances.setIn([lastComponent.get('cid'), 'isSelected'], false);
+  }
+  return cInstances.setIn([payload.cid, 'isSelected'], true);
 }
 
 const changeComponent = (cInstances, action) => {
   let { payload } = action;
-  let currentComponent = cInstances[payload.cid];
-  currentComponent.data = _.merge({}, currentComponent.data, payload.data);
-  currentComponent = _.merge({}, currentComponent);
-  return _.merge({}, cInstances, {[payload.cid]: currentComponent});
+  return cInstances.updateIn([payload.cid, 'data'], (orgData) => {
+    return orgData.merge(Immutable.Map(payload.data))
+  });
 }
 
-const cInstances = (state = {}, action) => {
-  switch (action.type) {
-    case '@@redux/INIT': // it's not recommend way.
-      return {
-        0: {
-          ctype: 'Stage',
-          cid: 0,
-          childComponents: []
-        }
-      };
+const initialState = Immutable.fromJS({
+  'cid-0': {
+    ctype: 'Stage',
+    cid: 0,
+    childIds: []
+  }
+});
 
+const cInstances = (state = initialState, action) => {
+  switch (action.type) {
     case 'COMPONENT_ADD':
       return addComponent(state, action);
 

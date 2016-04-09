@@ -1,3 +1,5 @@
+"use extensible";
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
@@ -8,12 +10,12 @@ class StageContainer extends Component {
   render () {
     let {
       dispatch,
-      activeComponents = [],
-      childComponents = []
+      cInstances,
+      childComponents
     } = this.props;
     return (
       <div className="ds-stage-container">
-        <Stage className="ds-stage" activeComponents={activeComponents} childComponents={childComponents} dispatch={dispatch} />
+        <Stage className="ds-stage" cInstances={cInstances} childComponents={childComponents} dispatch={dispatch} />
       </div>
     );
   }
@@ -21,9 +23,12 @@ class StageContainer extends Component {
 
 // export container component
 function mapState ({cInstances}) {
+  let childComponents = cInstances.getIn(['cid-0', 'childIds']).map((cid) => {
+    return cInstances.get(cid);
+  });
   return {
-    activeComponents: cInstances,
-    childComponents: cInstances[0].childComponents
+    cInstances: cInstances,
+    childComponents: childComponents
   };
 }
 
