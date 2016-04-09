@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 
 const propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.string,
   title: PropTypes.string
 };
 
 const defaultProps= {
-  size: 1,
+  size: '1',
   title: 'Heading'
 };
 

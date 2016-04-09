@@ -7,12 +7,14 @@ const addComponent = (cInstances, action) => {
   cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
     return childIds.push(payload.cid);
   });
+  let defaultData = Immutable.fromJS(Components[payload.ctype].defaultProps);
   let newComponent = Immutable.fromJS({
     ctype: payload.ctype,
     cid: payload.cid,
     data: {},
     childIds: []
   });
+  newComponent = newComponent.set('data', defaultData);
   return cInstances.setIn([payload.cid], newComponent);
 };
 

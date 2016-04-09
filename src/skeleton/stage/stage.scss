@@ -1,0 +1,56 @@
+
+@mixin auto-size {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.ds-stage {
+  height: 100%;
+  overflow: hidden;
+  background: repeating-linear-gradient(to right, #eee, #eee 8.333%, #fff 8.333%, #fff 16.666%)
+}
+.highlight-selector {
+  $padding: 1px;
+  $borderWidth: 2px;
+
+  @include auto-size;
+
+  display: none;
+  padding: $padding;
+  cursor: move;
+  z-index: 1002;
+  background-color: rgba(73, 164, 230, .1);
+  border: $borderWidth solid #009FF2;
+  margin-left: 0 - ($padding + $borderWidth);
+  margin-right: 0 - ($padding + $borderWidth);
+}
+.selected .highlight-selector {
+  display: block;
+}
+
+.highlight {
+  $padding: 1px;
+  $borderWidth: 1px;
+
+  @include auto-size;
+  display: none;
+
+  padding: $padding;
+  z-index: 1001;
+  border: $borderWidth solid #91C4DF;
+  margin-left: 0 - ($padding + $borderWidth);
+  margin-right: 0 - ($padding + $borderWidth);
+}
+.ds-component-container:hover .highlight {
+  display: block;
+}
+
+.ds-component-container {
+  position: relative;
+  .ds-component-mask {
+    display: none;
+  }
+}

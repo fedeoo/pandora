@@ -25,8 +25,12 @@ _.each(Conponents, (PerComponent, componentName) => {
     }
 
     render() {
+      let { isHover, isSelected } = this.props;
+      let classList = ['ds-component-container'];
+      isHover && classList.push('hover');
+      isSelected && classList.push('selected');
       return (
-        <div className="ds-component-container" onClick={this.handlerClick} onMouseOver={this.handlerOver}>
+        <div className={classList.join(' ')} onClick={this.handlerClick} onMouseOver={this.handlerOver}>
           <PerComponent {...this.props} />
           <div className="highlight-selector" />
           <div className="highlight" />
