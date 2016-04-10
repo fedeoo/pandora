@@ -13,12 +13,6 @@ const proxySource = {
   }
 };
 
-function dragSourceCollect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-  };
-}
 const hover = (props, monitor, component) => {
   console.log('hover', new Date());
   let item = monitor.getItem();
@@ -70,30 +64,26 @@ const proxyTarget = {
   hover: _.throttle(hover, 250)
 };
 
-function dropTargetCollect(connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget()
-  }
-}
-
 let ProxyComponents = {};
 _.each(Conponents, (PerComponent, componentName) => {
+
+  @DragSource(ComponentTypes.INSTANCE, proxySource, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }))
+  @DropTarget(ComponentTypes.INSTANCE, proxyTarget, (connect) => ({
+    connectDropTarget: connect.dropTarget()
+  }))
   class Proxy extends Component {
 
     constructor() {
       super();
-
       this.handlerClick = this.handlerClick.bind(this);
-      this.handlerOver = this.handlerOver.bind(this);
     }
 
     handlerClick() {
       let { dispatch } = this.props;
       dispatch(selectComponent(this.props.cid));
-    }
-    handlerOver () {
-      let { dispatch } = this.props;
-      // dispatch(hoverComponent(this.props.cid));
     }
 
     render() {
@@ -103,7 +93,7 @@ _.each(Conponents, (PerComponent, componentName) => {
       isSelected && classList.push('selected');
       isDragging && classList.push('dragging');
       return connectDragSource(connectDropTarget(
-        <div className={classList.join(' ')} onClick={this.handlerClick} onMouseOver={this.handlerOver}>
+        <div className={classList.join(' ')} onClick={this.handlerClick}>
           <PerComponent {...this.props} />
           <div className="highlight-selector" />
           <div className="highlight" />
@@ -112,7 +102,7 @@ _.each(Conponents, (PerComponent, componentName) => {
       ));
     }
   }
-  ProxyComponents[componentName] = DragSource(ComponentTypes.INSTANCE, proxySource, dragSourceCollect)(DropTarget(ComponentTypes.INSTANCE, proxyTarget, dropTargetCollect)(Proxy));
+  ProxyComponents[componentName] = Proxy;
 });
 
 export default ProxyComponents;

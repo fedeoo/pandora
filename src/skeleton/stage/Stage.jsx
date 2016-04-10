@@ -16,12 +16,9 @@ const stageTarget = {
   }
 }
 
-function collect (connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget()
-  }
-}
-
+@DropTarget(ComponentTypes.COMPONENT, stageTarget, (connect) => ({
+  connectDropTarget: connect.dropTarget()
+}))
 class Stage extends Component {
 
   render () {
@@ -46,4 +43,4 @@ class Stage extends Component {
   }
 }
 
-export default DropTarget(ComponentTypes.COMPONENT, stageTarget, collect)(Stage);
+export default Stage;

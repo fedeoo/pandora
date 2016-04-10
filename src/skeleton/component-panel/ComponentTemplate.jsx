@@ -10,12 +10,9 @@ const componentSource = {
   }
 };
 
-function collect (connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource()
-  };
-}
-
+@DragSource(ComponentTypes.COMPONENT, componentSource, (connect) => ({
+  connectDragSource: connect.dragSource()
+}))
 class ComponentTemplate extends Component {
   render () {
     let {ctype, label, connectDragSource} = this.props;
@@ -29,4 +26,4 @@ class ComponentTemplate extends Component {
   }
 }
 
-export default DragSource(ComponentTypes.COMPONENT, componentSource, collect)(ComponentTemplate);
+export default ComponentTemplate;
