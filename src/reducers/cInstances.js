@@ -2,8 +2,7 @@ import _ from 'lodash';
 import Immutable from 'immutable';
 import Components from '../components';
 
-const addComponent = (cInstances, action) => {
-  let { payload } = action;
+const addComponent = (cInstances, payload) => {
   cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
     return childIds.push(payload.cid);
   });
@@ -11,6 +10,7 @@ const addComponent = (cInstances, action) => {
   let newComponent = Immutable.fromJS({
     ctype: payload.ctype,
     cid: payload.cid,
+    pid: payload.pid,
     data: {},
     childIds: []
   });
@@ -18,8 +18,7 @@ const addComponent = (cInstances, action) => {
   return cInstances.setIn([payload.cid], newComponent);
 };
 
-const hoverComponent = (cInstances, action) => {
-  let { payload } = action;
+const hoverComponent = (cInstances, payload) => {
   let lastComponent = cInstances.find((item) => {
     return item.get('isHover');
   });
@@ -29,8 +28,7 @@ const hoverComponent = (cInstances, action) => {
   return cInstances.setIn([payload.cid, 'isHover'], true);
 };
 
-const selectComponent = (cInstances, action) => {
-  let { payload } = action;
+const selectComponent = (cInstances, payload) => {
   let lastComponent = cInstances.find((item) => {
     return item.get('isSelected');
   });
@@ -40,12 +38,24 @@ const selectComponent = (cInstances, action) => {
   return cInstances.setIn([payload.cid, 'isSelected'], true);
 }
 
-const changeComponent = (cInstances, action) => {
-  let { payload } = action;
+const changeComponent = (cInstances, payload) => {
   return cInstances.updateIn([payload.cid, 'data'], (orgData) => {
     return orgData.merge(Immutable.Map(payload.data))
   });
 }
+
+const moveComponent = (cInstances, payload) => {
+  return cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
+    let childIds2 = childIds.delete(payload.index);
+    if (Immutable.Set(childIds2).has(payload.cid)) {
+      console.log(payload);
+      return childIds;
+      // debugger;
+    }
+    return childIds2.insert(payload.desIndex, payload.cid);
+  });
+
+};
 
 const initialState = Immutable.fromJS({
   'cid-0': {
@@ -56,18 +66,22 @@ const initialState = Immutable.fromJS({
 });
 
 const cInstances = (state = initialState, action) => {
+  let payload = action.payload;
   switch (action.type) {
     case 'COMPONENT_ADD':
-      return addComponent(state, action);
+      return addComponent(state, payload);
 
     case 'COMPONENT_HOVER':
-      return hoverComponent(state, action);
+      return hoverComponent(state, payload);
 
     case 'COMPONENT_SELECT':
-      return selectComponent(state, action);
+      return selectComponent(state, payload);
 
     case 'COMPONENT_CHANGE':
-      return changeComponent(state, action)
+      return changeComponent(state, payload);
+
+    case 'COMPONENT_MOVE':
+      return moveComponent(state, payload);
 
     case 'COMPONENT_REMOVE':
       // getAllDescendantIds

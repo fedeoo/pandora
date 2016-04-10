@@ -1,3 +1,4 @@
 export const ComponentTypes = {
-  COMPONENT: 'component'
+  COMPONENT: 'component',
+  INSTANCE: 'instace'
 };

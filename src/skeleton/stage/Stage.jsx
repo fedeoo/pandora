@@ -34,12 +34,12 @@ class Stage extends Component {
 
     return connectDropTarget(<div className={className}>
       {
-        childComponents.map((item) => {
-          let { ctype, cid, data, isHover, isSelected } = item;
+        childComponents.map((item, index) => {
+          let { ctype, cid, pid, data, isHover, isSelected } = item;
           data = data.toJS();
           let ItemComponent = Components[ctype];
 
-          return <ItemComponent key={cid} cid={cid} isHover={isHover} isSelected={isSelected} dispatch={dispatch} {...data} />;
+          return <ItemComponent key={cid} cid={cid} index={index} pid={pid} isHover={isHover} isSelected={isSelected} dispatch={dispatch} {...data} />;
         })
       }
     </div>);

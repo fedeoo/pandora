@@ -30,9 +30,23 @@ export const selectComponent = (cid) => {
   };
 }
 
-export const changeComponent = (data) => {
+export const changeComponent = (payload) => {
   return {
     type: 'COMPONENT_CHANGE',
-    payload: data
+    payload
+  };
+}
+
+export const moveComponent = (payload) => {
+  return {
+    type: 'COMPONENT_MOVE',
+    payload
+  };
+}
+
+export const dragComponent = (payload) => {
+  return {
+    type: 'COMPONENT_DRAG',
+    payload
   };
 }

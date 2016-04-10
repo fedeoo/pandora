@@ -45,11 +45,14 @@
   margin-right: 0 - ($padding + $borderWidth);
 }
 .ds-component-container:hover .highlight {
-  display: block;
+  display: block; 
 }
 
 .ds-component-container {
   position: relative;
+  &.dragging {
+    opacity: 0;
+  }
   .ds-component-mask {
     display: none;
   }
