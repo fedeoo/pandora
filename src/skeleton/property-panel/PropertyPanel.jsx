@@ -33,6 +33,9 @@ const PropertyPanel = ({ selectedComponent, handleChange}) => {
     return (<div />);
   }
   let PropertyList = Property[ctype];
+  if (!PropertyList) {
+    return (<div />);
+  }
   data = data.toJS(); // Immutable Data to plain Object
   return (
     <Panel heading={ctype} className="ds-property-panel">

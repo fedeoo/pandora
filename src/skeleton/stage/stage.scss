@@ -27,8 +27,9 @@
   margin-left: 0 - ($padding + $borderWidth);
   margin-right: 0 - ($padding + $borderWidth);
 }
-.selected .highlight-selector {
+.selected > .highlight-selector {
   display: block;
+  pointer-events: none;
 }
 
 .highlight {
@@ -44,8 +45,9 @@
   margin-left: 0 - ($padding + $borderWidth);
   margin-right: 0 - ($padding + $borderWidth);
 }
-.ds-component-container:hover .highlight {
-  display: block; 
+.ds-component-container:hover > .highlight {
+  display: block;
+  pointer-events: none;
 }
 
 .ds-component-container {

@@ -11,6 +11,9 @@ function mapState (state) {
   let defaultList = [{
     ctype: 'Heading',
     label: 'Heading'
+  }, {
+    ctype: 'Grid',
+    label: 'Grid'
   }];
   let {mountedComponents = defaultList} = state;
   return {mountedComponents};

@@ -1,18 +1,28 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
 import Components from '../components';
+import Container from '../components/Container.jsx';
 
 const addComponent = (cInstances, payload) => {
   cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
     return childIds.push(payload.cid);
   });
   let defaultData = Immutable.fromJS(Components[payload.ctype].defaultProps);
+  _.each(payload.childIds, (childId) => {
+    cInstances = cInstances.setIn([childId], Immutable.fromJS({
+      ctype: 'VirtualLayer',
+      cid: childId,
+      pid: payload.cid,
+      data: {},
+      childIds: []
+    }));
+  });
   let newComponent = Immutable.fromJS({
     ctype: payload.ctype,
     cid: payload.cid,
     pid: payload.pid,
     data: {},
-    childIds: []
+    childIds: payload.childIds
   });
   newComponent = newComponent.set('data', defaultData);
   return cInstances.setIn([payload.cid], newComponent);
@@ -44,15 +54,26 @@ const changeComponent = (cInstances, payload) => {
   });
 }
 
+/**
+ * [move component: may be dispatch multiple times, care about dirty data]
+ */
 const moveComponent = (cInstances, payload) => {
-  return cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
-    let childIds2 = childIds.delete(payload.index);
-    if (Immutable.Set(childIds2).has(payload.cid)) {
-      console.log(payload);
-      return childIds;
-      // debugger;
-    }
-    return childIds2.insert(payload.desIndex, payload.cid);
+  let srcChildIds = cInstances.getIn([payload.pid, 'childIds']);
+  if (srcChildIds.get(payload.index) !== payload.cid) {
+    return cInstances;
+  }
+
+  cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {
+    return childIds.delete(payload.index);
+  });
+
+  let desChildIds = cInstances.getIn([payload.desCid, 'childIds']);
+  if (Immutable.Set(desChildIds).has(payload.cid)) {
+    return cInstances;
+  }
+  cInstances = cInstances.setIn([payload.cid, 'pid'], payload.desCid);
+  return cInstances.updateIn([payload.desCid, 'childIds'], (childIds) => {
+    return childIds.insert(payload.desIndex, payload.cid);
   });
 
 };

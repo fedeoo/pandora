@@ -1,13 +1,24 @@
+import Components from '../components';
+import { isContainer } from '../helper';
+
 const rootCid = 'cid-0';
 let nextCId = 1;
-export const addComponent = (ctype, pid) => {
-  nextCId ++
+export const addComponent = ({ ctype, pid }) => {
+  let cid = nextCId ++;
+  let childIds = [];
+  if (isContainer(Components[ctype])) {
+    let childCount = Components[ctype].defaultProps.childCount;
+    while(childCount --) {
+      childIds.push('cid-' + nextCId ++);
+    }
+  }
   return {
     type: 'COMPONENT_ADD',
     payload: {
       pid: pid || rootCid,
       cid: 'cid-' + nextCId,
-      ctype: ctype
+      ctype: ctype,
+      childIds: childIds
     }
   };
 }

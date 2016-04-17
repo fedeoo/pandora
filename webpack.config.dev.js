@@ -26,7 +26,7 @@ module.exports = {
       loaders: ['style', 'css']
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
       loader: "file"

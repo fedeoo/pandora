@@ -10,7 +10,7 @@ const componentSource = {
   }
 };
 
-@DragSource(ComponentTypes.COMPONENT, componentSource, (connect) => ({
+@DragSource(ComponentTypes.INSTANCE, componentSource, (connect) => ({
   connectDragSource: connect.dragSource()
 }))
 class ComponentTemplate extends Component {
