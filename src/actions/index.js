@@ -61,3 +61,9 @@ export const dragComponent = (payload) => {
     payload
   };
 }
+
+export const togglePreview = () => {
+  return {
+    type: 'TOGGLE_PREVIEW'
+  }
+}

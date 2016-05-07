@@ -1,9 +1,23 @@
 $toolbarHeight: 56px;
 $componentPanelWidth: 320px;
 
-@mixin auto-height {
+.workbench {
   position: absolute;
   top: $toolbarHeight;
+  bottom: 0;
+  width: 100%;
+}
+.preview-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, .75);
+}
+
+@mixin auto-height {
+  position: absolute;
+  top: 0;
   bottom: 0;
 }
 
@@ -16,7 +30,6 @@ $componentPanelWidth: 320px;
   @include auto-height;
   left: $componentPanelWidth + 1;
   right: $componentPanelWidth + 1;
-  top: $toolbarHeight;
   bottom: 0;
 }
 
