@@ -14,13 +14,16 @@ function mapState (state) {
   }, {
     ctype: 'Grid',
     label: 'Grid'
+  }, {
+    ctype: 'Block',
+    label: 'Block'
   }];
-  let {mountedComponents = defaultList} = state;
+  let { mountedComponents = defaultList } = state;
   return {mountedComponents};
 }
 
 const ComponentPanel = (store) => {
-  let {mountedComponents} = store;
+  let { mountedComponents } = store;
   return <Panel heading="Components" className="ds-component-panel">
     <ComponentList data={mountedComponents}/>
   </Panel>

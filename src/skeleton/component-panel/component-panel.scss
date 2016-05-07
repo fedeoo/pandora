@@ -4,6 +4,9 @@
 .icon-grid {
   background: url('./imgs/component_grid.png');
 }
+.icon-block {
+  background: url('./imgs/component_grid.png');
+}
 
 .ds-component-panel {
   .panel-body {
@@ -35,6 +38,11 @@
     margin: 0 auto;
   }
   .component-item .icon-grid {
+    width: 75px;
+    height: 50px;
+    margin: 0 auto;
+  }
+  .component-item .icon-block {
     width: 75px;
     height: 50px;
     margin: 0 auto;
