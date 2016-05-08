@@ -11,5 +11,4 @@ When you want to deploy you project, you should run `npm run build` to package i
 The purpose of this project is to build webpage with template for operation demand. The project will provide two models mapping the two phase for user. In the first phase, user just focus on layout and structure of page. And in the second phase, user will focus on content of page. The purpose of separation is considered for the situation that user
 
 ## Technology Stack
-### material-ui
 Applying inline-style has a performance problem, but we can isolate the generated style.

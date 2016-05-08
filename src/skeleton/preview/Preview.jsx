@@ -14,10 +14,10 @@ class Preview extends Component {
     return (<div className={ isPreview ? "preview-container" : "preview-container hide"}>
       <div className="ds-preview">
       {
-        childComponents.map((item, index) => {
-          let { ctype, cid, pid } = item;
+        childComponents.map((item) => {
+          let { ctype, cid, data } = item;
           let ItemComponent = Components[ctype];
-          return <ItemComponent key={cid} index={index} pid={pid} {...item} />;
+          return <ItemComponent key={cid} {...data} />;
         })
       }
     </div></div>);

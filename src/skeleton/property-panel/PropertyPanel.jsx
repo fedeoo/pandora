@@ -1,7 +1,6 @@
 "use extensible";
 
 import React, {Component} from 'react';
-import {AppBar} from 'material-ui';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 

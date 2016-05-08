@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Card} from 'material-ui';
 import Panel from '../panel';
 import {connect} from 'react-redux';
 

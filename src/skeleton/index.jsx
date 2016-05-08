@@ -4,8 +4,6 @@ import React from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import 'font-awesome/css/font-awesome.css';
-
 import {ComponentPanel} from './component-panel';
 import StageModule, {StageContainer} from './stage';
 import {PropertyPanel} from './property-panel';

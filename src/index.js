@@ -13,4 +13,9 @@ import Main from './skeleton/index.jsx';
 require('./index.scss');
 
 let store = createStore(reducers);
+if (module.hot) {
+  module.hot.accept('./reducers', () => {
+    store.replaceReducer(require('./reducers').default);
+  });
+}
 ReactDOM.render(<Provider store={store}><Main /></Provider>, document.getElementById('app'));
