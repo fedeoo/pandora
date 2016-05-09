@@ -1,0 +1,46 @@
+@mixin btn-color($color, $background) {
+  color: $color;
+  background: $background;
+
+  &:hover {
+    background-color: shade($color, 10%);
+  }
+}
+
+@mixin btn-size($padding, $font-size, $line-height) {
+  padding: $padding;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+.btn {
+  border: none;
+  outline: none;
+
+  &.btn-primary {
+    @include btn-color(#fff, #00A2CA);
+  }
+
+  &.btn-warning {
+    @include btn-color(#fff, #FF7300);
+  }
+
+  &.btn-default {
+    @include btn-color(#333, #DDD);
+  }
+
+  @include btn-size(7.5px 20px, 14px, 21px);
+
+  &.btn-lg {
+    @include btn-size(9px 24px, 16px, 24px);
+  }
+
+  &.btn-sm {
+    @include btn-size(6px 15px, 12px, 18px);
+  }
+
+  &.btn-sm {
+    @include btn-size(3px 15px, 12px, 18px);
+  }
+
+}
