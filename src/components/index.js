@@ -3,14 +3,17 @@ import Grid from './Grid/Grid.jsx';
 import Block from './Block/Block.jsx';
 import Button from './Button/Button.jsx';
 import Panel from './Panel/Panel.jsx';
+import ProductBanner from './ProductBanner/ProductBanner.jsx';
 
 export { Button };
 export { Panel };
+export { ProductBanner };
 
 export default {
   Heading,
   Grid,
   Block,
   Button,
-  Panel
+  Panel,
+  ProductBanner
 };
