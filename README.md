@@ -1,4 +1,4 @@
-> pandora also is a build webpage application. name it pandora to the memory of adbox. thx!
+> pandora also is a build webpage application. 
 
 # pandora
 
