@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'cheap-eavl-source-map',
   entry: [
-    'webpack-dev-server/client?http://127.0.0.1:8080',
+    'webpack-dev-server/client?http://127.0.0.1:8086',
     'webpack/hot/dev-server',
     './src/index.js'
   ],
@@ -41,7 +41,7 @@ module.exports = {
       loader: "url?limit=10000&minetype=image/svg+xml"
     }, {
       test: /\.jsx?$/,
-      loaders: ['babel'],
+      loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
@@ -51,6 +51,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    port: 8086
   }
 };
