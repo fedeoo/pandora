@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import { Panel } from '../../components';
 import {connect} from 'react-redux';
+import classNames from 'classnames/bind';
 
 import ComponentList from './ComponentList.jsx';
 
-import './component-panel.scss';
+import styles from './component-panel.scss';
+
+const cx = classNames.bind(styles);
 
 function mapState (state) {
   let defaultList = [{
@@ -24,11 +27,13 @@ function mapState (state) {
   return {mountedComponents};
 }
 
-const ComponentPanel = (store) => {
-  let { mountedComponents } = store;
-  return <Panel heading="Components" className="ds-component-panel">
-    <ComponentList data={mountedComponents}/>
-  </Panel>
-};
+class ComponentPanel extends Component {
+  render() {
+    let { mountedComponents } = this.props;
+    return <Panel heading="Components" className={cx('ds-component-panel')}>
+      <ComponentList data={mountedComponents}/>
+    </Panel>
+  }
+}
 
 export default connect(mapState)(ComponentPanel);

@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Components from '../../components';
+import classNames from 'classnames/bind';
+import styles from './preview.scss';
+const cx = classNames.bind(styles);
 
 class Preview extends Component {
   render () {
     let {
       connectDropTarget,
-      className,
       childComponents,
       isPreview
     } = this.props;
 
-    return (<div className={ isPreview ? "preview-container" : "preview-container hide"}>
-      <div className="ds-preview">
+    const className = cx({
+      'preview-container': true,
+      'hide': !isPreview
+    })
+    return (<div className={className}>
+      <div className={cx('ds-preview')}>
       {
         childComponents.map((item) => {
           let { ctype, cid, data } = item;

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import Immutable from 'immutable';
 import Components from '../components';
-import Container from '../components/Container.jsx';
 
 const addComponent = (cInstances, payload) => {
   cInstances = cInstances.updateIn([payload.pid, 'childIds'], (childIds) => {

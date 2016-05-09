@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import './panel.scss';
+import styles from './panel.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 
 class Panel extends Component {
 
@@ -11,11 +13,11 @@ class Panel extends Component {
       style,
       ...other,
     } = this.props;
-    className += ' panel';
+
     return (
-      <div {...other} className={className} style={style}>
-        <div className="panel-heading">{heading}</div>
-        <div className="panel-body">
+      <div {...other} className={cx('panel', className)} style={style}>
+        <div className={cx('panel-heading')}>{heading}</div>
+        <div className={cx('panel-body')}>
           {children}
         </div>
       </div>

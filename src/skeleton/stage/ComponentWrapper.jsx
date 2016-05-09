@@ -4,6 +4,10 @@ import {DropTarget, DragSource} from 'react-dnd';
 import _ from 'lodash';
 
 import {ComponentTypes} from '../Constants';
+import classNames from 'classnames/bind';
+import styles from './component-wrapper.scss';
+
+const cx = classNames.bind(styles);
 
 const proxySource = {
   beginDrag(props) {
@@ -88,16 +92,18 @@ export default function (RawComponent) {
 
     render() {
       let { isHover, isSelected, connectDragSource, connectDropTarget, selectComponent, isDragging, data, childComponents } = this.props;
-      let classList = ['ds-component-container'];
-      isHover && classList.push('hover');
-      isSelected && classList.push('selected');
-      isDragging && classList.push('dragging');
+      let classList = cx({
+        'ds-component-container': true,
+        'hover': isHover,
+        'selected': isSelected,
+        'dragging': isDragging
+      });
       return connectDragSource(connectDropTarget(
-        <div className={classList.join(' ')} onClick={this.handlerClick}>
+        <div className={classList} onClick={this.handlerClick}>
           <RawComponent cid={this.props.cid} {...data} />
-          <div className="highlight-selector" />
-          <div className="highlight" />
-          <div className="ds-component-mask"></div>
+          <div className={cx('highlight-selector')} />
+          <div className={cx('highlight')} />
+          <div className={cx('ds-component-mask')} />
         </div>
       ));
     }

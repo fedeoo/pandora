@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Container from '../Container.jsx';
+import Container from '../Container';
 import _ from 'lodash';
 import './block.scss';
 

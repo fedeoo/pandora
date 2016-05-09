@@ -1,0 +1,14 @@
+.preview-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, .75);
+  z-index: 9999;
+}
+.ds-preview {
+  width: 1200px;
+  margin: auto;
+  background: white;
+  border: 1px solid transparent;
+}

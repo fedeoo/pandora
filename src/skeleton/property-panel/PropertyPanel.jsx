@@ -23,24 +23,25 @@ function mapDispatch (dispatch) {
   };
 }
 
-const PropertyPanel = ({ selectedComponent, handleChange}) => {
-  if (!selectedComponent) {
-    return (<div />);
-  }
-  let { ctype, cid, data } = selectedComponent;
-  if (!ctype) {
-    return (<div />);
-  }
-  let PropertyList = Property[ctype];
-  if (!PropertyList) {
-    return (<div />);
-  }
-  data = data.toJS(); // Immutable Data to plain Object
-  return (
-    <Panel heading={ctype} className="ds-property-panel">
+class PropertyPanel extends Component {
+  render() {
+    let { selectedComponent, handleChange, className } = this.props;
+    if (!selectedComponent) {
+      return (<div />);
+    }
+    let { ctype, cid, data } = selectedComponent;
+    if (!ctype) {
+      return (<div />);
+    }
+    let PropertyList = Property[ctype];
+    if (!PropertyList) {
+      return (<div />);
+    }
+    data = data.toJS(); // Immutable Data to plain Object
+    return (<Panel heading={ctype} className={className}>
       <PropertyList cid={cid} handleChange={handleChange} {...data} />
-    </Panel>
-  );
+    </Panel>);
+  }
 }
 
 export default connect(mapState, mapDispatch)(PropertyPanel);

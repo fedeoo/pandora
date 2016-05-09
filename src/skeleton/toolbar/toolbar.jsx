@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import classNames from 'classnames/bind';
 
-class TopBar extends Component {
+import * as actions from '../../actions';
+import { Button } from '../../components';
+import styles from './toolbar.scss';
+
+const cx = classNames.bind(styles);
+
+class ToolBar extends Component {
 
   constructor() {
     super();
@@ -13,8 +19,9 @@ class TopBar extends Component {
     togglePreview();
   }
   render() {
-    return (<div className="toolbar">
-      <button onClick={this.onPreview}>预览</button>
+    const clz = cx('toolbar');
+    return (<div className={clz}>
+      <Button onClick={this.onPreview} type="primary" text="预览" />
     </div>)
   }
 }
@@ -26,4 +33,4 @@ function mapState ({ cmd }) {
   };
 }
 
-export default connect(mapState, actions)(TopBar);
+export default connect(mapState, actions)(ToolBar);
