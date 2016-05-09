@@ -16,6 +16,7 @@
 .btn {
   border: none;
   outline: none;
+  cursor: pointer;
 
   &.btn-primary {
     @include btn-color(#fff, #00A2CA);
