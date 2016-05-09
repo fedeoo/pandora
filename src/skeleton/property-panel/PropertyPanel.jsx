@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import {changeComponent} from '../../actions';
-import Panel from '../panel';
+import { Panel } from '../../components';
 import Property from '../../components/property';
 
 function mapState ({cInstances}) {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Panel from '../panel';
+import { Panel } from '../../components';
 import {connect} from 'react-redux';
 
 import ComponentList from './ComponentList.jsx';
@@ -16,6 +16,9 @@ function mapState (state) {
   }, {
     ctype: 'Block',
     label: 'Block'
+  }, {
+    ctype: 'Button',
+    label: 'Button'
   }];
   let { mountedComponents = defaultList } = state;
   return {mountedComponents};
