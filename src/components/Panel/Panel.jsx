@@ -13,9 +13,9 @@ class Panel extends Component {
       style,
       ...other,
     } = this.props;
-
+    const classes = classNames(cx('panel'), className);
     return (
-      <div {...other} className={cx('panel', className)} style={style}>
+      <div className={classes} style={style} {...other}>
         <div className={cx('panel-heading')}>{heading}</div>
         <div className={cx('panel-body')}>
           {children}

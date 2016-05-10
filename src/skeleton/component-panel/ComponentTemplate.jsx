@@ -21,11 +21,9 @@ const componentSource = {
 class ComponentTemplate extends Component {
   render () {
     let {ctype, label, connectDragSource} = this.props;
-    let iconClass = cx(`icon-${ctype}`);
-    let clz = cx('component-item');
     return connectDragSource(
-      <li key={ctype} className={clz} data-ctype={ctype}>
-        <div ctype={ctype} className={iconClass}></div>
+      <li key={ctype} className={cx('component-item')} data-ctype={ctype}>
+        <div ctype={ctype} className={cx(`icon-${ctype}`)}></div>
         <div className="label">{label}</div>
     </li>
     );

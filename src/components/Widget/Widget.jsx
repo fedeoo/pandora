@@ -1,3 +1,7 @@
+/**
+ * abstract parent component of complext Page Block Component
+ */
+
 import React, { Component, PropTypes } from 'react';
 
 const propTypes = {
@@ -9,7 +13,7 @@ const defaultProps = {
   background: '#FFF'
 };
 class Widget extends Component {
-  
+
 }
 
 Widget.propTypes = propTypes;
