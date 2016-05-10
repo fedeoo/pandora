@@ -10,7 +10,7 @@ import {createStore} from 'redux';
 import reducers from './reducers';
 
 import Main from './skeleton/index.jsx';
-import './index.scss';
+import './app.scss';
 
 let store = createStore(reducers);
 if (module.hot) {

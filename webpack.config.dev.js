@@ -7,7 +7,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://127.0.0.1:8086',
     'webpack/hot/dev-server',
-    './src/index.js'
+    './src/app.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -26,7 +26,17 @@ module.exports = {
       loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']
     }, {
       test: /\.scss$/,
-      loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass?sourceMap']
+      loaders: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass?sourceMap'],
+      include: [
+        path.resolve(__dirname, 'src/components'),
+        path.resolve(__dirname, 'src/skeleton')
+      ]
+    }, {
+      test: /\.scss$/,
+      loaders: ['style?sourceMap', 'css', 'sass?sourceMap'],
+      include: [
+        path.resolve(__dirname, 'src/app.scss')
+      ]
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
       loader: "file"

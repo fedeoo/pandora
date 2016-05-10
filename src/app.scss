@@ -10,10 +10,17 @@ body, button {
   box-sizing: border-box;
 }
 
+.layout {
+  width: 1224px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: auto;
+}
+
 $grid-columns: 12;
 $gutter: 12px;
 @for $i from 0 through $grid-columns {
-  :global .col-#{$i} {
+  .col-#{$i} {
     width: percentage(($i / $grid-columns));
     float: left;
     position: relative;
@@ -21,15 +28,15 @@ $gutter: 12px;
     padding-right: $gutter;
     padding-left: $gutter;
   }
-  :global .col-offset-#{$i} {
+  .col-offset-#{$i} {
     margin-left: percentage(($i / $grid-columns));
   }
 }
 
-:global .form-control {
+.form-control {
   display: block;
   width: 100%;
-  height: 30px;
+  height: 32px;
   padding: 7.5px 0 7.5px 10px;
   font-size: 12px;
   line-height: 15px;
@@ -51,18 +58,25 @@ $gutter: 12px;
 
 }
 
-:global .form-horizontal {
+textarea.form-control {
+  height: auto;
+}
+@mixin clearfix {
+  &:after {
+    display: table;
+    content: ' ';
+    clear: both;
+  }
+}
+
+.form-horizontal {
   .form-group {
-    margin-left: $gutter;
-    margin-right: $gutter;
+    margin-left: -$gutter;
+    margin-right: -$gutter;
 
     margin-bottom: 15px;
 
-    &::after {
-      display: table;
-      content: ' ';
-      clear: both;
-    }
+    @include clearfix;
 
     label {
       text-align: right;
@@ -70,4 +84,16 @@ $gutter: 12px;
       padding-top: 4px;
     }
   }
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.hide {
+  display: none;
+}
+
+.pull-right {
+  float: right;
 }
