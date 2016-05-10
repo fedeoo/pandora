@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Components from '../../components';
 import ComponentWrapper from './ComponentWrapper.jsx';
 import ContainerWrapper from './ContainerWrapper.jsx';
-import { isContainer } from '../../helper.js';
+import { isContainer } from '../../util/helper.js';
 
 let ProxyComponents = {};
 _.each(Components, (PerComponent, componentName) => {

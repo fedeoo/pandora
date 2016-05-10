@@ -1,5 +1,5 @@
 import Components from '../components';
-import { isContainer } from '../helper';
+import { isContainer } from '../util/helper';
 
 const rootCid = 'cid-0';
 let nextCId = 1;

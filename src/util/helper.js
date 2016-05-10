@@ -1,4 +1,4 @@
-import Container from './components/Container';
+import Container from '../components/Container';
 import _ from 'lodash';
 
 const isContainer = (ConponentType) => {
