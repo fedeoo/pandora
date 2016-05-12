@@ -82,12 +82,22 @@ export default function (RawComponent) {
     constructor() {
       super();
       this.handlerClick = this.handlerClick.bind(this);
+      this.handlerKeyPress = this.handlerKeyPress.bind(this);
     }
 
     handlerClick(event) {
       let { selectComponent } = this.props;
       selectComponent(this.props.cid);
       event.stopPropagation();
+    }
+
+    handlerKeyPress(event) {
+      if (event.keyCode === 46 || event.keyCode === 8) { // Delete or Backspace of Mac
+        let { removeComponent } = this.props;
+        removeComponent(this.props.cid);
+      }
+      event.stopPropagation();
+      event.preventDefault();
     }
 
     render() {
@@ -98,8 +108,9 @@ export default function (RawComponent) {
         'selected': isSelected,
         'dragging': isDragging
       });
+      // tabIndex for focus, so that div can bind key event.
       return connectDragSource(connectDropTarget(
-        <div className={classList} onClick={this.handlerClick}>
+        <div className={classList} onClick={this.handlerClick} onKeyDown={this.handlerKeyPress} tabIndex="1">
           <RawComponent cid={this.props.cid} {...data} />
           <div className={cx('highlight-selector')} />
           <div className={cx('highlight')} />

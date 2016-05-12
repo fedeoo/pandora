@@ -77,6 +77,35 @@ const moveComponent = (cInstances, payload) => {
 
 };
 
+const _removeChildIdOfParent = (cInstances, cid) => {
+  let pid = cInstances.getIn([cid, 'pid']);
+  return cInstances.updateIn([pid, 'childIds'], (childIds) => {
+    if (_.isNil(childIds)) {
+      return childIds;
+    }
+    let index = childIds.indexOf(cid);
+    if (index > -1) {
+      return childIds.delete(index);
+    }
+    return childIds;
+  });
+};
+
+const _removeComponentCascade = (cInstances, cid) => {
+  let childIds = cInstances.getIn([cid, 'childIds']);
+  if (!_.isNil(childIds)) {
+    childIds.forEach((childId) => {
+      cInstances = _removeComponentCascade(cInstances, childId);
+    });
+  }
+  return cInstances.delete(cid);
+};
+
+const removeComponent = (cInstances, payload) => {
+  cInstances = _removeChildIdOfParent(cInstances, payload.cid);
+  return _removeComponentCascade(cInstances, payload.cid);
+};
+
 const initialState = Immutable.fromJS({
   'cid-0': {
     ctype: 'Stage',
@@ -104,7 +133,7 @@ const cInstances = (state = initialState, action) => {
       return moveComponent(state, payload);
 
     case 'COMPONENT_REMOVE':
-      // getAllDescendantIds
+      return removeComponent(state, payload);
 
     default:
       return state;

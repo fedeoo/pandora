@@ -62,6 +62,15 @@ export const dragComponent = (payload) => {
   };
 }
 
+export const removeComponent = (cid) => {
+  return {
+    type: 'COMPONENT_REMOVE',
+    payload: {
+      cid
+    }
+  };
+}
+
 export const togglePreview = () => {
   return {
     type: 'TOGGLE_PREVIEW'

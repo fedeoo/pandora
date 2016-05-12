@@ -19,3 +19,8 @@ if (module.hot) {
   });
 }
 ReactDOM.render(<Provider store={store}><Main /></Provider>, document.getElementById('app'));
+
+// block system key event. like delete trigger back 
+document.addEventListener('keydown', (event) => {
+  event.preventDefault();
+});
