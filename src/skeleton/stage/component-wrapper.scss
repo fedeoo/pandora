@@ -47,6 +47,7 @@
 
 .ds-component-container {
   position: relative;
+  outline: none;
   &.dragging {
     opacity: 0;
   }

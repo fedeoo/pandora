@@ -20,7 +20,9 @@ if (module.hot) {
 }
 ReactDOM.render(<Provider store={store}><Main /></Provider>, document.getElementById('app'));
 
-// block system key event. like delete trigger back 
+// block system key event. like backspace trigger back
 document.addEventListener('keydown', (event) => {
-  event.preventDefault();
+  if (event.keyCode === 8) {
+    event.preventDefault();
+  }
 });
