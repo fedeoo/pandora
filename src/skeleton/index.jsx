@@ -15,9 +15,38 @@ import styles from './skeleton.scss';
 const cx = classNames.bind(styles);
 
 class AppComponent extends React.Component {
+  constructor() {
+    super();
+    this.handlerKeyPress = this.handlerKeyPress.bind(this);
+  }
+  // prevent system key event. like backspace trigger page back
+  handlerKeyPress(event) {
+    let doPrevent = false;
+    if (event.keyCode === 8) {
+      let d = event.srcElement || event.target;
+      if ((d.tagName.toUpperCase() === 'INPUT' &&
+        (
+          d.type.toUpperCase() === 'TEXT' ||
+          d.type.toUpperCase() === 'PASSWORD' ||
+          d.type.toUpperCase() === 'FILE' ||
+          d.type.toUpperCase() === 'SEARCH' ||
+          d.type.toUpperCase() === 'EMAIL' ||
+          d.type.toUpperCase() === 'NUMBER' ||
+          d.type.toUpperCase() === 'DATE')
+        ) ||
+        d.tagName.toUpperCase() === 'TEXTAREA') {
+        doPrevent = d.readOnly || d.disabled;
+      } else {
+        doPrevent = true;
+      }
+    }
+    if (doPrevent) {
+      event.preventDefault();
+    }
+  }
   render() {
     return (
-      <div>
+      <div className={cx('skeleton')} onKeyDown={this.handlerKeyPress} tabIndex="0">
         <Toolbar />
         <div className={cx('workbench')}>
           <ComponentPanel className={cx('ds-component-panel')} />
