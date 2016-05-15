@@ -34,7 +34,8 @@ class AppComponent extends React.Component {
           d.type.toUpperCase() === 'NUMBER' ||
           d.type.toUpperCase() === 'DATE')
         ) ||
-        d.tagName.toUpperCase() === 'TEXTAREA') {
+        d.tagName.toUpperCase() === 'TEXTAREA' ||
+        d.contentEditable === 'true') {
         doPrevent = d.readOnly || d.disabled;
       } else {
         doPrevent = true;

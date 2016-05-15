@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Widget from '../Widget';
+import Text from '../Text';
 
 import classNames from 'classnames/bind';
 import styles from './product-banner.scss';
@@ -19,6 +20,7 @@ const defaultProps = _.extend({}, Widget.defaultProps, {
 });
 
 class ProductBanner extends Widget {
+
   render() {
     let { background, title, desc='', btns=[] } = this.props;
     let styles = {
@@ -26,8 +28,8 @@ class ProductBanner extends Widget {
     };
     return (<div className={cx('banner')} style={styles}>
       <div className="layout">
-        <h1>{title}</h1>
-        <p dangerouslySetInnerHTML={{__html: desc}} />
+        <Text tagName="h1" content={title} onChange={this.onPropertyChange.bind(this, 'title')} />
+        <Text tagName="p" content={desc} onChange={this.onPropertyChange.bind(this, 'desc')} />
         <div className={cx('btn-bar')}>
         {
           btns.map((btn) => {

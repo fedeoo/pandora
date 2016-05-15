@@ -12,6 +12,13 @@ class Preview extends Component {
     super();
     this.onExitPreivew = this.onExitPreivew.bind(this);
   }
+
+  getChildContext() {
+    return {
+      isEditable: true
+    };
+  }
+
   onExitPreivew() {
     let { togglePreview } = this.props;
     togglePreview();
@@ -21,7 +28,8 @@ class Preview extends Component {
     let {
       connectDropTarget,
       childComponents,
-      isPreview
+      isPreview,
+      changeComponent
     } = this.props;
 
     const className = cx({
@@ -35,7 +43,7 @@ class Preview extends Component {
           childComponents.map((item) => {
             let { ctype, cid, data } = item;
             let ItemComponent = Components[ctype];
-            return <ItemComponent key={cid} {...data} />;
+            return <ItemComponent key={cid} cid={cid} {...data} changeComponent={changeComponent} />;
           })
         }
       </div>
@@ -43,6 +51,9 @@ class Preview extends Component {
   }
 }
 
+Preview.childContextTypes = {
+  isEditable: React.PropTypes.bool
+};
 
 function mapState ({ cInstances, cmd }, ownProps) {
   let currentComponent = cInstances.get(ownProps.cid);
