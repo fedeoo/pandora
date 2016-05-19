@@ -17,9 +17,6 @@ function mapState (state) {
     ctype: 'Grid',
     label: 'Grid'
   }, {
-    ctype: 'Block',
-    label: 'Block'
-  }, {
     ctype: 'Button',
     label: 'Button'
   }, {

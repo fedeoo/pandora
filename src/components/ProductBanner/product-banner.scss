@@ -3,41 +3,42 @@
   height: 500px;
   padding-top: 120px;
   color: #FFF;
-}
-.banner h1 {
-  font-size: 48px;
-  line-height: 64px;
-  margin-bottom: 20px;
-}
-.banner p {
-  margin-bottom: 20px;
-  font-size: 14px;
-  line-height: 24px;
-  max-width: 556px;
-}
-.banner .btn-bar {
-  position: absolute;
-  top: 330px;
-}
-.banner .btn-bar .ds-btn {
-  margin-right: 10px;
-  padding: 8px 18px;
-  font-size: 16px;
-  line-height: 24px;
-}
-.banner .ds-btn.ds-btn-primary {
-  background-color: #43BFE3;
-  border: 1px solid #43BFE3;
-}
-.banner .ds-btn.ds-btn-primary-outline {
-  color: #FFFFFF;
-  border: 1px solid;
-}
-.banner .ds-btn.ds-btn-primary-outline:hover {
-  background-color: rgba(255, 255, 255, .2);
-}
-.banner .ds-btn.ds-btn-primary-outline:active {
-  background-color: #FFF;
-  border: 1px solid #FFF;
-  color: #333;
+
+  h1 {
+    font-size: 48px;
+    line-height: 64px;
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    max-width: 556px;
+  }
+  .btn-bar {
+    position: absolute;
+    top: 330px;
+  }
+  .btn-bar .ds-btn {
+    margin-right: 10px;
+    padding: 8px 18px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .ds-btn.ds-btn-primary {
+    background-color: #43BFE3;
+    border: 1px solid #43BFE3;
+  }
+  .ds-btn.ds-btn-primary-outline {
+    color: #FFFFFF;
+    border: 1px solid;
+  }
+  .ds-btn.ds-btn-primary-outline:hover {
+    background-color: rgba(255, 255, 255, .2);
+  }
+  .ds-btn.ds-btn-primary-outline:active {
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    color: #333;
+  }
 }
