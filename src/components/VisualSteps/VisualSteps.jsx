@@ -25,6 +25,16 @@ const defaultProps = _.extend({}, Widget.defaultProps, {
 
 class VisualSteps extends Widget {
 
+  onStepChange(index, event) {
+    let steps = this.props.steps;
+    steps[index] = event.target.value;
+    let mockEventValue = {
+      target: {
+        value: [].concat(steps)
+      }
+    };
+    this.onPropChange('steps', mockEventValue);
+  }
   render() {
     let { title, steps = [], background } = this.props;
     let len = steps.length;
@@ -41,7 +51,7 @@ class VisualSteps extends Widget {
                 return (<td key={index}>
                     { (index + 1) < len ? <Icon type="right" className={cx('icon-right')} /> : null }
                     <div><Icon type={`shuzi${index+1}`} className={cx('icon')} /></div>
-                    <Text tagName="div" content={step} onChange={this.onPropertyChange.bind(this, 'step')} />
+                    <Text tagName="div" content={step} onChange={this.onStepChange.bind(this, index)} />
                 </td>);
               })
             }
