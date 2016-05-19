@@ -32,7 +32,7 @@ $componentPanelWidth: 320px;
   @include auto-height;
   left: $componentPanelWidth + 1;
   right: $componentPanelWidth + 1;
-  overflow: hidden;
+  overflow: auto;
   background: repeating-linear-gradient(to right, #F7F7F7, #F7F7F7 8.333%, #fff 8.333%, #fff 16.666%)
 }
 

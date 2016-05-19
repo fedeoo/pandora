@@ -37,8 +37,8 @@ class Preview extends Component {
       'hide': !isPreview
     })
     return (<div className={className}>
+      <Button className={cx('exit-btn')} type="primary" text="退出" onClick={this.onExitPreivew} />
       <div className={cx('ds-preview')}>
-        <Button className={cx('exit-btn')} type="primary" text="退出" onClick={this.onExitPreivew} />
         {
           childComponents.map((item) => {
             let { ctype, cid, data } = item;
