@@ -22,6 +22,9 @@ function mapState (state) {
   }, {
     ctype: 'ProductBanner',
     label: 'ProductBanner'
+  }, {
+    ctype: 'VisualSteps',
+    label: 'VisualSteps'
   }];
   let { mountedComponents = defaultList } = state;
   return {mountedComponents};

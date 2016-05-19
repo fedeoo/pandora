@@ -1,0 +1,17 @@
+.item-list {
+  .header {
+    margin: 12px 0;
+    font-weight: bold;
+  }
+  .item-header {
+    padding: 10px;
+    background-color: #F7F7F7;
+    i {
+      font-size: 12px;
+    }
+  }
+  .item-body {
+    padding: 10px;
+    border: 1px solid #F7F7F7;
+  }
+}

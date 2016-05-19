@@ -28,10 +28,11 @@ class Button extends Component {
   }
   render() {
     const { type, size, text, className } = this.props;
-    const classes = cx({
+    const classes = classNames(cx({
       [prefixCls]: true,
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-${size}`]: size,
+    }), {
       [className]: className
     });
     return (<button className={classes} onClick={this.handleClick}>{text}</button>);

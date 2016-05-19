@@ -82,9 +82,22 @@ textarea.form-control {
       text-align: right;
       font-weight: 700;
       padding-top: 4px;
+      color: #333;
     }
   }
 }
+
+fieldset {
+  border: none;
+  background-color: #F7F7F7;
+  margin: 0 -12px;
+  padding: 20px 12px;
+
+  legend {
+    color: #666;
+  }
+}
+
 
 .clearfix {
   @include clearfix;
@@ -96,4 +109,14 @@ textarea.form-control {
 
 .pull-right {
   float: right;
+}
+
+.text-info {
+  color: #00A2CA;
+}
+.text-success {
+  color: #7ED321;
+}
+.text-danger {
+  color: #FF7300;
 }

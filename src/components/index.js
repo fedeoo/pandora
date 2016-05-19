@@ -4,10 +4,12 @@ import Block from './Block/Block.jsx';
 import Button from './Button/Button.jsx';
 import Panel from './Panel/Panel.jsx';
 import ProductBanner from './ProductBanner/ProductBanner.jsx';
+import VisualSteps from './VisualSteps/VisualSteps.jsx';
 
 export { Button };
 export { Panel };
 export { ProductBanner };
+export { VisualSteps };
 
 export default {
   Heading,
@@ -15,5 +17,6 @@ export default {
   Block,
   Button,
   Panel,
-  ProductBanner
+  ProductBanner,
+  VisualSteps
 };
