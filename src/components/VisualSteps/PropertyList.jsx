@@ -9,12 +9,7 @@ const cx = classNames.bind(styles);
 class PropertyList extends AbstractPropertyList {
 
   bubbelChange(steps) {
-    let mockEventValue = {
-      target: {
-        value: [].concat(steps)
-      }
-    };
-    this.onPropChange('steps', mockEventValue);
+    this.onPropChange('steps', this.genetateStubEvent([].concat(steps)));
   }
   onStepChange(index, event) {
     let steps = this.props.steps;

@@ -11,6 +11,13 @@ class AbstractPropertyList extends Component {
       }
     });
   }
+  genetateStubEvent(value) {
+    return {
+      target: {
+        value: value
+      }
+    };
+  }
 }
 
 AbstractPropertyList.defaultProps = {
