@@ -23,7 +23,7 @@ class PropertyList extends AbstractPropertyList {
   }
   onAdd() {
     let steps = this.props.steps;
-    this.bubbelChange(['step'].concat(steps));
+    this.bubbelChange([].concat(steps, 'step'));
   }
   onRemove(index) {
     let steps = this.props.steps;
