@@ -25,6 +25,9 @@ function mapState (state) {
   }, {
     ctype: 'VisualSteps',
     label: 'VisualSteps'
+  }, {
+    ctype: 'VisualDocs',
+    label: 'VisualDocs'
   }];
   let { mountedComponents = defaultList } = state;
   return {mountedComponents};

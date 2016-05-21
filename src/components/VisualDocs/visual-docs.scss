@@ -1,0 +1,29 @@
+  .docs {
+    padding: 60px 0;
+    h2 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      line-height: 42.5px;
+      color: #000;
+    }
+    h3 {
+      margin-bottom: 26px;
+      font-size: 18px;
+      line-height: 24px;
+      color: #262626;
+    }
+    p {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 10px;
+    }
+    .card {
+      padding: 30px;
+      min-height: 250px;
+      border: 1px solid #F1F1F1;
+      background: #FFF;
+    }
+    .card img {
+      max-width: 190px;
+    }
+  }
