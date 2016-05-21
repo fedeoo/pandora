@@ -8,20 +8,9 @@ const cx = classNames.bind(styles);
 
 class PropertyList extends AbstractPropertyList {
 
-  bubbelChange(steps) {
-    this.onPropChange('steps', this.genetateStubEvent([].concat(steps)));
-  }
-  onAdd() {
-    let steps = this.props.steps;
-    this.bubbelChange([].concat(steps, 'step'));
-  }
-  onRemove(index) {
-    let steps = this.props.steps;
-    steps.splice(index, 1);
-    this.bubbelChange(steps);
-  }
   render() {
     let { background, title, steps = [] } = this.props;
+    let defaultItem = 'Step *';
     return (<div className="form-horizontal">
       <div className="form-group">
         <label htmlFor="" className="col-3">背景</label>
@@ -37,14 +26,14 @@ class PropertyList extends AbstractPropertyList {
       </div>
       <div className={cx('item-list')}>
         <div className={cx('header')}>
-          <Icon type="add" className="pull-right text-success" onClick={this.onAdd.bind(this)}/>
+          <Icon type="add" className="pull-right text-success" onClick={this.onPropAdd.bind(this, 'steps', defaultItem)}/>
           <label htmlFor="">Steps</label>
         </div>
         {
           steps.map((step, index) => {
             return (<div key={index} className={cx('item')}>
               <div className={cx('item-header', 'clearfix')}>
-                <Icon type="rubbish" className="pull-right text-danger" onClick={this.onRemove.bind(this, index)} />
+                <Icon type="rubbish" className="pull-right text-danger" onClick={this.onPropRemove.bind(this, 'steps', index)} />
                 Step
               </div>
               <div className={cx('item-body')}>

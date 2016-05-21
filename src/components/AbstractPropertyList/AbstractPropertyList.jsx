@@ -8,12 +8,12 @@ const forceUpdateObjProp = (obj, propName) => {
 
 class AbstractPropertyList extends Component {
 
-  onPropChange(name, event) {
+  handleChange(name, value) {
     let { changeComponent, cid } = this.props;
     if (_.isFunction(changeComponent)) {
       let propName = name.replace(/[\[\.].*$/, ''); // get prop Name
       let oldData = _.pick(this.props, [propName]);
-      let newData = _.set(oldData, name, event.target.value);
+      let newData = _.set(oldData, name, value);
       forceUpdateObjProp(oldData, propName);
       changeComponent({
         cid: cid,
@@ -21,6 +21,27 @@ class AbstractPropertyList extends Component {
       });
     }
   }
+  onPropChange(name, event) {
+    this.handleChange(name, event.target.value)
+  }
+
+  onPropAdd(name, value) {
+    let oldValue = _.get(this.props, name);
+    if (!_.isArray(oldValue)) {
+      throw new Error(`props.${name} is not array!`);
+    }
+    let newValue = [].concat(oldValue, value);
+    this.handleChange(name, newValue);
+  }
+  onPropRemove(name, index) { // 'steps' 1
+    let oldValue = _.get(this.props, name);
+    if (!_.isArray(oldValue)) {
+      throw new Error(`props.${name} is not array!`);
+    }
+    oldValue.splice(index, 1);
+    this.handleChange(name, oldValue);
+  }
+
   genetateStubEvent(value) {
     return {
       target: {
