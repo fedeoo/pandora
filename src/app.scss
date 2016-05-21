@@ -77,7 +77,7 @@ textarea.form-control {
     margin-left: -$gutter;
     margin-right: -$gutter;
 
-    margin-bottom: 15px;
+    margin-bottom: $gutter;
 
     @include clearfix;
 
