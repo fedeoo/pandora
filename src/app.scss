@@ -1,9 +1,12 @@
-body, button {
-  margin: 0;
-  padding: 0;
+body, button, h1, h2, h3, h4, h5 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: MicrosoftYaHei,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-weight: 400;
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -119,4 +122,13 @@ fieldset {
 }
 .text-danger {
   color: #FF7300;
+}
+
+a, a:active {
+  color: #00A2CA;
+  outline: none;
+  text-decoration: none;
+}
+a:hover {
+  color: #43BFE3;
 }
