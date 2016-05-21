@@ -17,7 +17,7 @@ function mapState ({cInstances}) {
 
 function mapDispatch (dispatch) {
   return {
-    handleChange: (data) => {
+    changeComponent: (data) => {
       return dispatch(changeComponent(data));
     }
   };
@@ -25,7 +25,7 @@ function mapDispatch (dispatch) {
 
 class PropertyPanel extends Component {
   render() {
-    let { selectedComponent, handleChange, className } = this.props;
+    let { selectedComponent, changeComponent, className } = this.props;
     if (!selectedComponent) {
       return (<div />);
     }
@@ -39,7 +39,7 @@ class PropertyPanel extends Component {
     }
     data = data.toJS(); // Immutable Data to plain Object
     return (<Panel heading={ctype} className={className}>
-      <PropertyList cid={cid} handleChange={handleChange} {...data} />
+      <PropertyList cid={cid} changeComponent={changeComponent} {...data} />
     </Panel>);
   }
 }

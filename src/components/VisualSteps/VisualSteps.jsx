@@ -33,7 +33,7 @@ class VisualSteps extends Widget {
     };
     return (<div className={cx('steps')} style={styles}>
       <div className="layout">
-        <Text tagName="h2" content={title} onChange={this.onPropertyChange.bind(this, 'title')} />
+        <Text tagName="h2" content={title} onChange={this.onPropChange.bind(this, 'title')} />
         <table className={cx('step-layout')}><tbody>
           <tr>
             {
@@ -41,7 +41,7 @@ class VisualSteps extends Widget {
                 return (<td key={index}>
                     { (index + 1) < len ? <Icon type="right" className={cx('icon-right')} /> : null }
                     <div><Icon type={`shuzi${index+1}`} className={cx('icon')} /></div>
-                    <Text tagName="div" content={step} onChange={this.onPropertyChange.bind(this, `steps[${index}]`)} />
+                    <Text tagName="div" content={step} onChange={this.onPropChange.bind(this, `steps[${index}]`)} />
                 </td>);
               })
             }

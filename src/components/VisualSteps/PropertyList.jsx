@@ -11,11 +11,6 @@ class PropertyList extends AbstractPropertyList {
   bubbelChange(steps) {
     this.onPropChange('steps', this.genetateStubEvent([].concat(steps)));
   }
-  onStepChange(index, event) {
-    let steps = this.props.steps;
-    steps[index] = event.target.value;
-    this.bubbelChange(steps);
-  }
   onAdd() {
     let steps = this.props.steps;
     this.bubbelChange([].concat(steps, 'step'));
@@ -56,7 +51,7 @@ class PropertyList extends AbstractPropertyList {
                 <div className="form-group">
                   <label htmlFor="" className="col-3">文本</label>
                   <div className="col-9">
-                    <input type="text" className="form-control" value={step} onChange={this.onStepChange.bind(this, index)}/>
+                    <input type="text" className="form-control" value={step} onChange={this.onPropChange.bind(this, `steps[${index}]`)}/>
                   </div>
                 </div>
               </div>

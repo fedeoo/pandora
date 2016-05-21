@@ -16,7 +16,7 @@ const defaultProps = {
 };
 class Widget extends Component {
 
-  onPropertyChange(name, event) {
+  onPropChange(name, event) {
     let { changeComponent, cid } = this.props;
     if (_.isFunction(changeComponent)) {
       let propName = name.replace(/[\[\.].*$/, ''); // get prop Name

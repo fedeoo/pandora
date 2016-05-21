@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 
+const forceUpdateObjProp = (obj, propName) => {
+  if (_.isArray(obj[propName])) { // force update new data
+    obj[propName] = [].concat(obj[propName]);
+  }
+};
+
 class AbstractPropertyList extends Component {
 
   onPropChange(name, event) {
-    let { handleChange, cid } = this.props;
-    handleChange({
-      cid: cid,
-      data: {
-        [name]: event.target.value
-      }
-    });
+    let { changeComponent, cid } = this.props;
+    if (_.isFunction(changeComponent)) {
+      let propName = name.replace(/[\[\.].*$/, ''); // get prop Name
+      let oldData = _.pick(this.props, [propName]);
+      let newData = _.set(oldData, name, event.target.value);
+      forceUpdateObjProp(oldData, propName);
+      changeComponent({
+        cid: cid,
+        data: newData
+      });
+    }
   }
   genetateStubEvent(value) {
     return {
@@ -21,7 +31,7 @@ class AbstractPropertyList extends Component {
 }
 
 AbstractPropertyList.defaultProps = {
-  handleChange() {}
+  changeComponent() {}
 };
 
 export default AbstractPropertyList;

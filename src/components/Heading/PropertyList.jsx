@@ -1,16 +1,7 @@
 import React, {Component} from 'react';
+import AbstractPropertyList from '../AbstractPropertyList';
 
-class PropertyList extends Component {
-
-  onPropertyChange(name, event) {
-    let { handleChange, cid } = this.props;
-    handleChange({
-      cid: cid,
-      data: {
-        [name]: event.target.value
-      }
-    });
-  }
+class PropertyList extends AbstractPropertyList {
 
   render() {
     let { size, title } = this.props;
@@ -18,7 +9,7 @@ class PropertyList extends Component {
       <div className="form-group">
         <label htmlFor="" className="col-3">size</label>
         <div className="col-9">
-          <select className="form-control" onChange={this.onPropertyChange.bind(this, 'size')}>
+          <select className="form-control" onChange={this.onPropChange.bind(this, 'size')}>
             <option value="1">h1</option>
             <option value="2">h2</option>
             <option value="3">h3</option>
@@ -31,7 +22,7 @@ class PropertyList extends Component {
       <div className="form-group">
         <label htmlFor="" className="col-3">title</label>
         <div className="col-9">
-          <input type="text" className="form-control" value={title} onChange={this.onPropertyChange.bind(this, 'title')}/>
+          <input type="text" className="form-control" value={title} onChange={this.onPropChange.bind(this, 'title')}/>
         </div>
       </div>
     </div>);
